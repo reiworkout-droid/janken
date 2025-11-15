@@ -3,115 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黒ひげ危機一発</title>
-    <link rel="stylesheet" href="./css/kurohige.css">
+    <link rel="stylesheet" href="./css/site.css">
+    <title>Document</title>
 </head>
 <body>
-    <header>
-        <!-- //三本線 -->
-        <span class="nav_toggle">
-            <i></i>
-            <i></i>
-            <i></i>
-        </span>
-        <!-- ハンバーガーメニューの中身 -->
-        <nav class="nav">
-            <ul class="nav_menu_ul">
-                <li class="nav_menu_li"><a href="./site.html">LP</a></li>
-                <li class="nav_menu_li"><a href="./janken.html">じゃんけん</a></li>
-                <li class="nav_menu_li"><a href="./kurohige.html">黒ひげ危機一発</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="container">
+        <header id="header">
 
-    <main>
-        <section>
-            <h1 id="title">マーシャル”D”ティチ一発</h1>
-        </section>
+            <h1 class="title">LEVEL 4 CORPORATION</h1>
 
-        <div class="game">
-            <section class="game_img">
-                <img src="./images/kurohige.jpeg" id="kurohige_img" alt="">
-                <img src="./images/taru.jpg" id="taru_img" alt="">
-            </section>
+            <!-- ハンバーガーメニューの形 -->
+            <span class="nav_toggle">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+            <!-- メニューの中身 -->
+            <nav class="nav">
+                <ul class="nav_menu_ul">
+                    <li class="nav_menu_li"><a href="./site.html">LP</a></li>
+                    <li class="nav_menu_li"><a href="./janken.html">ポ○モン風じゃんけん</a></li>
+                    <li class="nav_menu_li"><a href="./kurohige.html">マーシャル”D”ティチ一発</a></li>
+                </ul>
+            </nav>
 
-            <div class="select_button">
-                <div id="select1">
-                    <button class="pirate_btn" id="btn1">1</button>
-                    <button class="pirate_btn" id="btn2">2</button>
-                    <button class="pirate_btn" id="btn3">3</button>
-                </div>
+        </header>
 
-                <div id="select2">
-                    <button class="pirate_btn" id="btn4">4</button>
-                    <button class="pirate_btn" id="btn5">5</button>
-                    <button class="pirate_btn" id="btn6">6</button>
-                </div>
-            </div>
-                <div id="reset">
-                    <button id="reset_button">リトライ</button>
-                </div>
 
+        <div class="profile">
+            <h2 class="subtitle">CONCEPT</h2>
+            <p>楽しいをモットーにクソゲーを開発します。</p>
         </div>
 
-        <section class="instraction">
-            <p id="result">☝️</p>
-            <p>ナイフを指す場所を選んでね</p>
-        </section>
+        <!-- ボタン（本来buttonの中にaタグを入れるのはなし） -->
+        <div class="soft">
+            <h2 class="game_soft">GAME</h2>
+            <div class="btn">
+                <button id="janken"><a href="./janken.html" id="janken_text">ポ○モン風じゃんけん</a></button>
+                <button id="kurohige"><a href="./kurohige.html" id="kurohige_text">マーシャル”D”ティチ一発</a></button>
+                <button id="coming_soon">coming soon...</button>    
+            </div>
+        </div>
 
-    </main>
+        <div class="access">
+            <h2 class="company_access">ACCESS</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.5841747388417!2d130.39914094000952!3d33.59014424210036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35419191c602a6db%3A0x398fff34353723db!2z44CSODEwLTAwMDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSp56We77yR5LiB55uu77yY4oiS77yR!5e0!3m2!1sja!2sjp!4v1763046454189!5m2!1sja!2sjp" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="company_info">
+                <div class="access_left">
+                    <p>会社名</p>
+                    <p>住所</p>
+                    <p>電話番号</p>
+                </div>
+                <div class="access_right">
+                    <p>LEVEL 4 CORPORATION</p>
+                    <p>福岡県福岡市中央区天神１丁目8番１号</p>
+                    <p>0120−828−８２８</p>
+                </div>
+            </div>
+        </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script>
-
-        // ハンバーガーメニュー
-        $('.nav_toggle').on('click',function(){
-            $('.nav_toggle, .nav').toggleClass('show');
-        });
-
-        // ０〜５の数字をランダム
-        $(function(){
-            const max = 5
-            const min = 0
-    
-            let losingButton = Math.floor(Math.random() *(max-min+1)+min);
-            console.log("外れボタン:", losingButton);//デバック確認用
-
-
-            // ボタンクリック時
-            $('.pirate_btn').on('click',function(){
-                const clickedId = $(this).attr('id');
-                const clickedNum = parseInt(clickedId.replace('btn', ''), 10);
-
-                // 分岐処理
-                if(clickedNum === losingButton){
-                    $('#result').text('ゲームオーバー💥');
-                    $('#kurohige_img').animate({
-                        top: "-100px"//上に飛び出す　下向きに数値が大きくなるためマイナス値
-                    }, 800);
-                    $('.pirate_btn').prop('disabled', true);//全ボタン無効化
-                } else {
-                    $('#result').text('セーフ・・・');
-                    $(this).prop('disabled', true)//押したボタンだけ無効化
-                }
+        <script>
+            // 三本線クリックでnavタグ
+            $('.nav_toggle').on('click',function(){
+                $('.nav_toggle, .nav').toggleClass('show');
             });
 
-             // リセットボタン
-            $('#reset_button').on('click', function() {
-                losingButton = Math.floor(Math.random() * 6) + 1; // 1〜6を再抽選
-                console.log("新しい外れボタン:", losingButton);
-                $('#result').text('☝️');
-                $('#kurohige_img').css('top', '0'); // 黒ひげを元の位置に戻す
-                $('.pirate_btn').prop('disabled', false);
-            });
-        
-        })
+        </script>
 
+        <footer>
 
-
-
-
-    </script>
+        </footer>
+    </div>
 </body>
 </html>
