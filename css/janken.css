@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../images/pokemon.jpeg);
+  background-size: cover;
+}
+
+.nav_toggle {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 1rem; /* 右上に配置 */
+  transform: translateY(-50%); /* 縦中央に配置 */
+  width: 1.75rem;
+  height: 1.5rem;
+  margin-top: 15px;
+  z-index: 200;
+}
+
+.nav_toggle i {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  position: absolute;
+  transition: transform .5s, opacity .5s;
+}
+
+.nav_toggle i:nth-child(1) {
+  top: 0;
+}
+
+.nav_toggle i:nth-child(2) {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.nav_toggle i:nth-child(3) {
+  bottom: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 画面の外に隠す */
+  width: 20%;
+  height: 100vh;
+  background-color: #fff;
+  transition: right .5s;
+  padding-top: 4rem;
+}    
+
+.nav.show {
+  right: 0; /* スライドイン */
+}
+
+.nav_menu_ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav_menu_li {
+  margin: 1.5rem;
+  text-align: center;
+}
+
+.nav_menu_li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+
+#title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#comp_hand {
+  display: flex;
+  justify-content: end;
+  margin-right: 200px;
+}
+
+#match {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+
+#select {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 100px;
+}
+
+button {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+.junken_img {
+  width: 150px;
+  height: 150px;
+}
+
+main {
+  max-width: 1200px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+section {
+  height: calc(100vh/5);
+  display: flex;
+
+  align-items: center;
+}
+
+.judgement {
+  display: flex;
+  margin-left: 30px;
+}
+
+.comp_janken_img {
+  width: 150px;
+  height: 150px;
+}
+
+#yasei {
+  font-size: 20px;
+  color: aliceblue;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#result {
+  font-size: 30px;
+  font-weight: 300;
+}

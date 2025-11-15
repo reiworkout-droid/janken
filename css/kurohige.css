@@ -1,0 +1,199 @@
+body {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.nav_toggle {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 1rem; /* 右上に配置 */
+  transform: translateY(-50%); /* 縦中央に配置 */
+  width: 1.75rem;
+  height: 1.5rem;
+  margin-top: 15px;
+  z-index: 200;
+}
+
+.nav_toggle i {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  position: absolute;
+  transition: transform .5s, opacity .5s;
+}
+
+.nav_toggle i:nth-child(1) {
+  top: 0;
+}
+
+.nav_toggle i:nth-child(2) {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.nav_toggle i:nth-child(3) {
+  bottom: 0;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* 画面の外に隠す */
+  width: 20%;
+  height: 100vh;
+  background-color: #fff;
+  transition: right .5s;
+  padding-top: 4rem;
+}    
+
+.nav.show {
+  right: 0; /* スライドイン */
+}
+
+.nav_menu_ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav_menu_li {
+  margin: 1.5rem;
+  text-align: center;
+}
+
+.nav_menu_li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+
+#title {
+    text-align: center;
+}
+
+.game {
+    position: relative;
+    width: 800px;
+}
+
+.game_img {
+    position: absolute;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#kurohige_img {
+    position: relative;
+    top: 0;
+    left: 300px;
+    height: 100px;
+    width: 120px;
+    transition: top 0.3s;
+    z-index: 1000;
+}
+
+#taru_img {
+    position: absolute;
+    top: 50px;
+    left: 110px;
+    height: 400px;
+    width: 500px;
+}
+
+#select1 {
+    position: absolute;
+    left: 280px;
+    top: 200px;
+}
+
+#btn1 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color: #FFFF00;
+}
+
+#btn1:hover {
+    background-color: #DDDDDD;
+}
+
+#btn2 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color:#FFFF00;
+}
+
+#btn2:hover {
+    background-color: #DDDDDD;
+}
+
+#btn3 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color: #FFFF00;
+}
+
+#btn3:hover {
+    background-color: #DDDDDD;
+}
+
+#select2 {
+    position: absolute;
+    left: 250px;
+    top: 330px;
+}
+
+#btn4 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color: #FFFF00;    
+}
+
+#btn4:hover {
+    background-color: #DDDDDD;
+}
+
+#btn5 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color: #FFFF00;
+}
+
+#btn5:hover {
+    background-color: #DDDDDD;
+}
+
+#btn6 {
+    width: 30px;
+    height: 100px;
+    margin-right: 50px;
+    background-color: #FFFF00;
+}
+
+#btn6:hover {
+    background-color: #DDDDDD;
+}
+
+.disabled-btn {
+    background-color: #8B4513;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.instraction {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 500px;
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけん</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet" />
+  <link rel="stylesheet" href="css/janken.css">
+</head>
+
+<body>
+  <header>
+    <span class="nav_toggle">
+        <i></i>
+        <i></i>
+        <i></i>
+    </span>
+    <nav class="nav">
+        <ul class="nav_menu_ul">
+            <li class="nav_menu_li"><a href="./site.html">LP</a></li>
+            <li class="nav_menu_li"><a href="./janken.html">じゃんけん</a></li>
+            <li class="nav_menu_li"><a href="./kurohige.html">黒ひげ危機一発</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="title">
+      <h1>ポ○モン風じゃんけん</h1>
+    </section>
+
+    <section id="comp_hand">
+      <p id="comp_what">コンピュータの手は？？</p>
+    </section>
+
+    <div id="count"></div>
+    <div class="judgement"><p>勝ち<span id="wincount">0</span>回</p></div>
+    <div class="judgement"><p>負け<span id="losecount">0</span>回</p></div>
+
+    <section id="match">
+      <p id="result">勝敗は？？</p>
+    </section>
+
+    <section>
+      <div id="select">
+        <button id="gu"><img src="./images/janken_gu.png" class="junken_img" alt=""></button>
+        <button id="cho"><img src="./images/janken_choki.png" class="junken_img" alt=""></button>
+        <button id="pa"><img src="./images/janken_pa.png" class="junken_img" alt=""></button>
+      </div>
+    </section>
+
+    <div id="yasei">
+      <p>野生のじゃんけんが現れた！！！！</p>
+    </div>
+
+    <div id="game_clear" style="display: none;">
+      <img src="./images/clear.jpg" alt="">
+    </div>
+
+    <div id="game_false" style="display: none;">
+      <img src="./images/false.jpg" alt="">
+    </div>
+
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+
+    // ハンバーガーメニュー
+    $('.nav_toggle').on('click',function(){
+        $('.nav_toggle, .nav').toggleClass('show');
+    });
+
+
+    const max = 2;
+    const min = 0;
+
+    const gu = 0;
+    const cho = 1;
+    const pa = 2;
+
+
+    // タイトルアニメーション
+    $('#title').animate()
+
+
+    // クリックしたらコンピュータと対戦
+    $('#gu').on('click',function(){
+      let player = 0;
+      const comp = Math.floor(Math.random() * (max-min+1)-min);
+
+      // 選択したら大きく
+      $('#gu').animate({width: '+=100px'}, 300,function(){
+        setTimeout(function(){
+        $('#gu').css({width: '-=100px'}, 1000);
+        }, 2000);
+      });
+
+      //　じゃんけん・・・の演出
+      $('#result').text('じゃんけん・・・')
+
+
+      // 分岐処理
+
+      setTimeout(function(){
+        if(comp===0 && player===0
+        ){
+          $('#result').text('あいこ')
+        } else if (comp===1 && player===0){
+          $('#result').text('勝ち')
+        } else if (comp===2 && player===0){
+          $('#result').text('負け')
+        }
+      }, 1500);
+
+      console.log(comp);
+      console.log(player)
+
+      // コンピュータの手表示
+      setTimeout(function(){
+        if(comp===0){
+          $('#comp_what').html('<img src="./images/janken_gu.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===1){
+          $('#comp_what').html('<img src="./images/janken_choki.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===2){
+          $('#comp_what').html('<img src="./images/janken_pa.png" class="comp_janken_img" alt="">');
+        }
+      }, 1000);
+
+
+      // 勝敗を反映する
+      // 勝ったら勝ち数に＋１
+      setTimeout(function(){
+        if(comp===1 && player===0){
+          $('#wincount').text(parseInt($('#wincount').text())+1);
+        }
+        // 負けたら負け数に＋１
+        if(comp===2 && player===0){
+          $('#losecount').text(parseInt($('#losecount').text())+1);
+        }
+      }, 1500);
+
+      
+    });
+
+    $('#cho').on('click',function(){
+      let player = 1
+      const comp = Math.floor(Math.random() * (max-min+1)-min);
+
+      // 選択したのを大きく
+      $('#cho').animate({width: '+=100px'}, 300,function(){
+        setTimeout(function(){
+        $('#cho').css({width: '-=100px'}, 1000);
+        }, 2000);
+      });
+     
+      //　じゃんけん・・・の演出
+      $('#result').text('じゃんけん・・・')
+     
+      // 分岐処理
+      setTimeout(function(){
+        if(comp===0 && player===1){
+          $('#result').text('負け')
+        } else if (comp===1 && player===1){
+          $('#result').text('あいこ')
+        } else if (comp===2 && player===1){
+          $('#result').text('勝ち')
+        }
+      }, 1500);
+      console.log(comp);
+
+      // コンピュータの手表示
+      setTimeout(function(){
+        if(comp===0){
+          $('#comp_what').html('<img src="./images/janken_gu.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===1){
+          $('#comp_what').html('<img src="./images/janken_choki.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===2){
+          $('#comp_what').html('<img src="./images/janken_pa.png" class="comp_janken_img" alt="">');
+        }
+      }, 1000);
+
+      // 勝ったら勝ち数に＋１      
+      setTimeout(function(){
+        if(comp===2 && player===1){
+          $('#wincount').text(parseInt($('#wincount').text())+1);
+        }
+        // 負けたら負け数に＋１
+        if(comp===0 && player===1){
+          $('#losecount').text(parseInt($('#losecount').text())+1);
+        }
+      }, 1500);
+
+
+    });
+
+    $('#pa').on('click',function(){
+      let player = 2
+      const comp = Math.floor(Math.random() * (max-min+1)-min);
+      
+      // 選択したのを大きく
+      $('#pa').animate({width: '+=100px'}, 300,function(){
+        setTimeout(function(){
+        $('#pa').css({width: '-=100px'}, 1000);
+        }, 2000);
+      });
+
+
+      //　じゃんけん・・・の演出
+      $('#result').text('じゃんけん・・・')
+
+
+      // 分岐処理
+      setTimeout(function(){
+        if(comp===0 && player===2){
+          $('#result').text('勝ち')
+        } else if (comp===1 && player===2){
+          $('#result').text('負け')
+        } else if (comp===2 && player===2){
+          $('#result').text('あいこ')
+        }
+      }, 1500);
+
+      console.log(comp);
+
+      // コンピュータの手表示
+      setTimeout(function(){
+        if(comp===0){
+          $('#comp_what').html('<img src="./images/janken_gu.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===1){
+          $('#comp_what').html('<img src="./images/janken_choki.png" class="comp_janken_img" alt="">');
+        }
+
+        if(comp===2){
+          $('#comp_what').html('<img src="./images/janken_pa.png" class="comp_janken_img" alt="">');
+        }
+      }, 1000);
+
+
+      // 勝ったら勝ち数に＋１
+      setTimeout(function(){
+        if(comp===0 && player===2){
+          $('#wincount').text(parseInt($('#wincount').text())+1);
+        }
+        // 負けたら負け数に＋１
+        if(comp===1 && player===2){
+          $('#losecount').text(parseInt($('#losecount').text())+1);
+        }
+      }, 1500);
+
+
+      // 勝ち数が３になったらゲームクリアを表示
+      if('#wincount'===3){
+        $('#game_clear').show(500);
+      }
+
+    });
+
+
+
+  </script>
+
+
+</body>
+
+</html>

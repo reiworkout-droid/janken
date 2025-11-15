@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おみくじ</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main>
+
+    <section class="title_section">
+      <h1>おみくじ</h1>
+    </section>
+
+    <section class="result_section" id="result">
+      <p>結果は？？</p>
+    </section>
+
+    <section class="button_section">
+      <button id="button">おみくじをひく</button>
+    </section>
+
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+      // const text1 = 'g\'s';
+      // const text2 = "academy";
+
+      // console.log(text1 + text2)
+
+      // const num1 = 100;
+      // const num2 = 200;
+      // console.log(num1 + num2);
+
+      // クリックしたら動く
+    $('#button').on('click',function(){
+      
+
+      // 乱数の設定、整数に直す
+    const max = 4;
+    const min = 0;
+    
+    const randomnum = Math.floor(Math.random() * (max-min+1)+min);
+    console.log(randomnum);
+
+      // 分岐処理
+    if (randomnum===0){
+      $('#result').text('大凶');
+    }else if (randomnum===1) {
+      $('#result').text('凶');
+    }else if (randomnum===2) {
+      $('#result').text('小吉');
+    }else if (randomnum===3) {
+      $('#result').text('中吉');
+    }else if (randomnum===4) {
+      $('#result').text('大吉');
+    }
+
+    });
+
+  </script>
+</body>
+
+</html>
