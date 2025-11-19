@@ -10,7 +10,7 @@
     <div id="container">
         <header id="header">
 
-            <h1 class="title">LEVEL 4 CORPORATION</h1>
+            <h1 class="title">R Game Studio</h1>
 
             <!-- ハンバーガーメニューの形 -->
             <span class="nav_toggle">
@@ -21,7 +21,7 @@
             <!-- メニューの中身 -->
             <nav class="nav">
                 <ul class="nav_menu_ul">
-                    <li class="nav_menu_li"><a href="./site.html">LP</a></li>
+                    <li class="nav_menu_li"><a href="./index.html">LP</a></li>
                     <li class="nav_menu_li"><a href="./janken.html">ポ○モン風じゃんけん</a></li>
                     <li class="nav_menu_li"><a href="./kurohige.html">マーシャル”D”ティチ一発</a></li>
                 </ul>
@@ -39,8 +39,8 @@
         <div class="soft">
             <h2 class="game_soft">GAME</h2>
             <div class="btn">
-                <button id="janken"><a href="./janken.html" id="janken_text">ポ○モン風じゃんけん</a></button>
-                <button id="kurohige"><a href="./kurohige.html" id="kurohige_text">マーシャル”D”ティチ一発</a></button>
+                <button id="janken">ポ○モン風じゃんけん</button>
+                <button id="kurohige">マーシャル”D”ティチ一発</button>
                 <button id="coming_soon">coming soon...</button>    
             </div>
         </div>
@@ -69,6 +69,19 @@
             $('.nav_toggle').on('click',function(){
                 $('.nav_toggle, .nav').toggleClass('show');
             });
+
+            $('#janken').on('click', function() {
+                window.location.href = 'janken.html'; // 遷移先のURL
+            });
+
+            $('#kurohige').on('click', function() {
+                window.location.href = 'kurohige.html';
+            });
+
+
+            // $('#janken').on('click',function(){
+            //     $('#janken').html('a href=""')
+            // });
 
         </script>
 

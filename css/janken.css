@@ -1,6 +1,8 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Comic Sans MS','Rounded Mplus 1c','M+ 1p / 1c',PixelMplus,sans-serif;
+
 }
 
 body {
@@ -17,7 +19,7 @@ body {
   width: 1.75rem;
   height: 1.5rem;
   margin-top: 15px;
-  z-index: 200;
+  z-index: 1000;
 }
 
 .nav_toggle i {
@@ -52,6 +54,7 @@ body {
   background-color: #fff;
   transition: right .5s;
   padding-top: 4rem;
+  z-index: 100;
 }    
 
 .nav.show {
@@ -79,12 +82,77 @@ body {
 #title {
   font-size: 20px;
   font-weight: bold;
+  }
+
+.reset {
+    position: relative;
 }
 
-#comp_hand {
+#reset_btn {
+    position: absolute;
+    background-color:#fff;
+    top: -30px;
+    width: 80px;
+    height: 30px;
+    border-radius: 0;     /* ← これで四角になる */
+    padding: 4px 8px;
+    font-size: 15px;
+    border: 1px solid #333;
+    z-index: 1000;
+}
+
+#reset_button:hover {
+  background-color: darkgray;
+}
+
+.balls {
   display: flex;
-  justify-content: end;
-  margin-right: 200px;
+  position: relative;
+}
+
+#ball_1 {
+  position: absolute;
+  right: 40px;
+}
+
+#ball_2 {
+  position: absolute;
+  right: 70px;
+}
+
+#ball_3 {
+  position: absolute;
+  right: 100px;
+}
+
+#comp {
+  position: relative;
+}
+
+#comp_what {
+  position: absolute;
+  right: 470px;
+  font-size: 30px;
+}
+
+#enemy {
+  position: relative;
+}
+
+#monster {
+  position: absolute;
+  right: 150px;
+}
+
+#versus {
+  position: relative;
+}
+
+#vs {
+  position: absolute;
+  left: 550px;
+  font-size: 50px;
+  font-weight: bold;
 }
 
 #match {
@@ -93,8 +161,27 @@ body {
   align-items: center;  
 }
 
+#me {
+  position: relative;
+}
 
-#select {
+#maccho {
+  position: absolute;
+  top: -70px;
+  left: 100px;
+}
+
+#name {
+  position: relative;
+}
+
+#reichel {
+  position: absolute;
+  top: 235px;
+  left: 200px;
+}
+
+#guchopa {
   display: flex;
   justify-content: left;
   margin-bottom: 100px;
@@ -107,6 +194,7 @@ button {
   font-size: 30px;
   border: none;
   background-color: transparent;
+  font-family: inherit;
 }
 
 .junken_img {
@@ -123,7 +211,6 @@ main {
 section {
   height: calc(100vh/5);
   display: flex;
-
   align-items: center;
 }
 
@@ -137,14 +224,119 @@ section {
   height: 150px;
 }
 
+#ball_4 {
+  position: absolute;
+  top: 50px;
+}
+
+#ball_5 {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+}
+
+#ball_6 {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+}
+
+#hand {
+  position: relative;
+}
+
+#guchopa {
+  position: absolute;
+  left: 400px;
+}
+
 #yasei {
   font-size: 20px;
   color: aliceblue;
+  position: relative;
+}
+
+#yasei_p {
+  position: absolute;
+  top: 190px;
+  left: 440px;
+
+}
+
+#add_text {
   text-align: center;
-  margin-top: 10px;
+}
+
+#text_btn {
+  position: absolute;
+  top: 130px;
+  right: 300px;
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.select {
+  position: relative;
+}
+
+#gu {
+  position: absolute;
+  left: 300px;
+  top: 180px;
+  color: aliceblue;
+}
+
+#gu:hover {
+  text-decoration: underline;
+}
+
+#cho {
+  position: absolute;
+  left: 500px;
+  top: 180px;
+  color: aliceblue;
+}
+
+#cho:hover {
+  text-decoration: underline;
+}
+
+#pa {
+  position: absolute;
+  left: 700px;
+  top: 180px;
+  color: aliceblue;
+}
+
+#pa:hover {
+  text-decoration: underline;
 }
 
 #result {
   font-size: 30px;
   font-weight: 300;
+}
+
+.game_false {
+  position: relative;
+}
+
+#game_clear {
+  position: absolute;
+  right: -100px;
+  top: -150px;
+}
+
+#game_false {
+  position: absolute;
+  right: -100px;
+  top: -150px;
+}
+
+#wincount {
+  display: none;
+}
+
+#losecount {
+  display: none;
 }

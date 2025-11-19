@@ -7,6 +7,7 @@
   <title>じゃんけん</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet" />
   <link rel="stylesheet" href="css/janken.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c&family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     </span>
     <nav class="nav">
         <ul class="nav_menu_ul">
-            <li class="nav_menu_li"><a href="./site.html">LP</a></li>
+            <li class="nav_menu_li"><a href="./index.html">LP</a></li>
             <li class="nav_menu_li"><a href="./janken.html">じゃんけん</a></li>
             <li class="nav_menu_li"><a href="./kurohige.html">黒ひげ危機一発</a></li>
         </ul>
@@ -31,37 +32,83 @@
       <h1>ポ○モン風じゃんけん</h1>
     </section>
 
-    <section id="comp_hand">
-      <p id="comp_what">コンピュータの手は？？</p>
+    <div class="reset">
+      <button id="reset_btn">リセット</button>
+    </div>
+
+    <div class="balls">
+      <div id="ball_1">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+      <div id="ball_2">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+      <div id="ball_3">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+    </div>
+
+    <div id="comp">
+      <p id="comp_what">Lv.100</p>
+    </div>
+
+    <section id="enemy">
+      <img src="./images/monster.png" alt="" id="monster" width="300px" height="400px">
     </section>
 
-    <div id="count"></div>
-    <div class="judgement"><p>勝ち<span id="wincount">0</span>回</p></div>
-    <div class="judgement"><p>負け<span id="losecount">0</span>回</p></div>
+    <div id="versus">
+      <p id="vs">vs</p>
+    </div>
 
-    <section id="match">
-      <p id="result">勝敗は？？</p>
-    </section>
+    <div class="balls">
+      <div id="ball_4">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+      <div id="ball_5">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+      <div id="ball_6">
+        <img src="./images/ball.png" width="30px" height="30px" alt="">
+      </div>
+    </div>
 
-    <section>
-      <div id="select">
-        <button id="gu"><img src="./images/janken_gu.png" class="junken_img" alt=""></button>
-        <button id="cho"><img src="./images/janken_choki.png" class="junken_img" alt=""></button>
-        <button id="pa"><img src="./images/janken_pa.png" class="junken_img" alt=""></button>
+    <div id="me">
+      <img src="/images/maccho.png" alt="" id="maccho" width="300px" height="400px">
+    </div>
+
+    <div id="name">
+      <p id="reichel">れいちぇる</p>
+    </div>
+
+    <section id="hand">
+      <div id="guchopa">
       </div>
     </section>
 
     <div id="yasei">
-      <p>野生のじゃんけんが現れた！！！！</p>
+      <p id="yasei_p">野生のじゃんけんが現れた！！！！</p>
+      <button id="text_btn">，</button>
     </div>
 
-    <div id="game_clear" style="display: none;">
-      <img src="./images/clear.jpg" alt="">
+    <div class="select" style="display: none;">
+        <button id="gu">グー</button>
+        <button id="cho">チョキ</button>
+        <button id="pa">パー</button>
     </div>
 
-    <div id="game_false" style="display: none;">
-      <img src="./images/false.jpg" alt="">
+    <!-- ゲームクリア・ゲームオーバーの表示 -->
+    <div class="game_clear">
+      <div id="game_clear" style="display: none;">
+        <img src="./images/game_clear.png" alt="">
+      </div>
+
+      <div id="game_false" style="display: none;">
+        <img src="./images/game_over.png" alt="">
     </div>
+
+    <div id="wincount">0</div>
+    <div id="losecount">0</div>
+
 
   </main>
 
@@ -86,18 +133,26 @@
     // タイトルアニメーション
     $('#title').animate()
 
+    // テキスト部分
+    $('#text_btn').on('click',function(){
+      $('#yasei_p').text("選択してね").css('margin-left', '80px');
+      $('.select').fadeIn(500);
+    });
 
     // クリックしたらコンピュータと対戦
     $('#gu').on('click',function(){
       let player = 0;
       const comp = Math.floor(Math.random() * (max-min+1)-min);
 
-      // 選択したら大きく
-      $('#gu').animate({width: '+=100px'}, 300,function(){
-        setTimeout(function(){
-        $('#gu').css({width: '-=100px'}, 1000);
-        }, 2000);
-      });
+      // 選択したら表示
+      setTimeout(function(){
+        $('#guchopa').html('<img src="./images/janken_gu.png" class="junken_img" alt="">');
+      },1000);
+
+      setTimeout(function() {
+          $('#guchopa').html('');  // ← 空に戻す
+        }, 3000);
+
 
       //　じゃんけん・・・の演出
       $('#result').text('じゃんけん・・・')
@@ -134,6 +189,11 @@
         }
       }, 1000);
 
+      setTimeout(function() {
+          $('#comp_what').html('Lv.100');  // ← 空に戻す
+        }, 3000);
+
+
 
       // 勝敗を反映する
       // 勝ったら勝ち数に＋１
@@ -141,9 +201,44 @@
         if(comp===1 && player===0){
           $('#wincount').text(parseInt($('#wincount').text())+1);
         }
+
+        if(parseInt($('#wincount').text())===1){
+          $('#ball_1').html('<img src="./images/none-ball.png" class="balls" class="non_ball_1" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===2){
+          $('#ball_2').html('<img src="./images/none-ball.png" class="balls" class="non_ball_2" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===3){
+          $('#ball_3').html('<img src="./images/none-ball.png" class="balls" class="non_ball_3" width="30px" height="30px" alt="">');
+        }
+
+        // 勝ち数が３になったらゲームクリアを表示
+        if(parseInt($('#wincount').text())===3){
+          $('#game_clear').fadeIn(500);
+        }
+
         // 負けたら負け数に＋１
         if(comp===2 && player===0){
           $('#losecount').text(parseInt($('#losecount').text())+1);
+        }
+
+        if(parseInt($('#losecount').text())===1){
+          $('#ball_4').html('<img src="./images/none-ball.png" class="balls" class="non_ball_4" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===2){
+          $('#ball_5').html('<img src="./images/none-ball.png" class="balls" class="non_ball_5" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===3){
+          $('#ball_6').html('<img src="./images/none-ball.png" class="balls" class="non_ball_6" width="30px" height="30px" alt="">');
+        }
+
+        // 負け数が３になったらゲームオーバーを表示
+        if(parseInt($('#losecount').text())===3){
+          $('#game_false').fadeIn(500);
         }
       }, 1500);
 
@@ -154,12 +249,14 @@
       let player = 1
       const comp = Math.floor(Math.random() * (max-min+1)-min);
 
-      // 選択したのを大きく
-      $('#cho').animate({width: '+=100px'}, 300,function(){
+      // 選択したのを表示
         setTimeout(function(){
-        $('#cho').css({width: '-=100px'}, 1000);
-        }, 2000);
-      });
+          $('#guchopa').html('<img src="./images/janken_choki.png" class="junken_img" alt="">');
+        },1000);
+
+        setTimeout(function() {
+            $('#guchopa').html('');  // ← 空に戻す
+          }, 3000);
      
       //　じゃんけん・・・の演出
       $('#result').text('じゃんけん・・・')
@@ -191,14 +288,53 @@
         }
       }, 1000);
 
+      setTimeout(function() {
+        $('#comp_what').html('Lv.100');//相手の手を元に戻す
+      }, 3000);
+
       // 勝ったら勝ち数に＋１      
       setTimeout(function(){
         if(comp===2 && player===1){
           $('#wincount').text(parseInt($('#wincount').text())+1);
         }
+
+        if(parseInt($('#wincount').text())===1){
+          $('#ball_1').html('<img src="./images/none-ball.png" class="balls" class="non_ball_1" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===2){
+          $('#ball_2').html('<img src="./images/none-ball.png" class="balls" class="non_ball_2" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===3){
+          $('#ball_3').html('<img src="./images/none-ball.png" class="balls" class="non_ball_3" width="30px" height="30px" alt="">');
+        }
+
+        // 勝ち数が３になったらゲームクリアを表示
+        if(parseInt($('#wincount').text())===3){
+          $('#game_clear').fadeIn(500);
+        }
+
         // 負けたら負け数に＋１
         if(comp===0 && player===1){
           $('#losecount').text(parseInt($('#losecount').text())+1);
+        }
+
+        if(parseInt($('#losecount').text())===1){
+          $('#ball_4').html('<img src="./images/none-ball.png" class="balls" class="non_ball_4" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===2){
+          $('#ball_5').html('<img src="./images/none-ball.png" class="balls" class="non_ball_5" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===3){
+          $('#ball_6').html('<img src="./images/none-ball.png" class="balls" class="non_ball_6" width="30px" height="30px" alt="">');
+        }
+
+        // 負け数が３になったらゲームオーバーを表示
+        if(parseInt($('#losecount').text())===3){
+          $('#game_false').fadeIn(500);
         }
       }, 1500);
 
@@ -209,16 +345,16 @@
       let player = 2
       const comp = Math.floor(Math.random() * (max-min+1)-min);
       
-      // 選択したのを大きく
-      $('#pa').animate({width: '+=100px'}, 300,function(){
+      // 選択したのを表示 
         setTimeout(function(){
-        $('#pa').css({width: '-=100px'}, 1000);
-        }, 2000);
-      });
+          $('#guchopa').html('<img src="./images/janken_pa.png" class="junken_img" alt="">');
+        },1000);
+
+        setTimeout(function() {
+            $('#guchopa').html('');  // ← 空に戻す
+          }, 3000);
 
 
-      //　じゃんけん・・・の演出
-      $('#result').text('じゃんけん・・・')
 
 
       // 分岐処理
@@ -249,27 +385,92 @@
         }
       }, 1000);
 
+      setTimeout(function() {
+        $('#comp_what').html("Lv.100");//３秒後に相手の手を戻す
+      }, 3000);
 
-      // 勝ったら勝ち数に＋１
+      
       setTimeout(function(){
         if(comp===0 && player===2){
-          $('#wincount').text(parseInt($('#wincount').text())+1);
+          $('#wincount').text(parseInt($('#wincount').text())+1);// 勝ったら勝ち数に＋１
         }
+
+        // 勝ったら相手のボール１減
+        if(parseInt($('#wincount').text())===1){
+          $('#ball_1').html('<img src="./images/none-ball.png" class="balls" class="non_ball_1" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===2){
+          $('#ball_2').html('<img src="./images/none-ball.png" class="balls" class="non_ball_2" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#wincount').text())===3){
+          $('#ball_3').html('<img src="./images/none-ball.png" class="balls" class="non_ball_3" width="30px" height="30px" alt="">');
+        }
+
+        // 勝ち数が３になったらゲームクリアを表示
+        if(parseInt($('#wincount').text())===3){
+          $('#game_clear').fadeIn(500);
+        }
+
         // 負けたら負け数に＋１
         if(comp===1 && player===2){
           $('#losecount').text(parseInt($('#losecount').text())+1);
         }
+
+        // 負けたらグレーボールに置き換え
+        if(parseInt($('#losecount').text())===1){
+          $('#ball_4').html('<img src="./images/none-ball.png" class="balls" class="non_ball_4" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===2){
+          $('#ball_5').html('<img src="./images/none-ball.png" class="balls" class="non_ball_5" width="30px" height="30px" alt="">');
+        }
+
+        if(parseInt($('#losecount').text())===3){
+          $('#ball_6').html('<img src="./images/none-ball.png" class="balls" class="non_ball_6" width="30px" height="30px" alt="">');
+        }
+
+        // 負け数が３になったらゲームオーバーを表示
+        if(parseInt($('#losecount').text())===3){
+          $('#game_false').fadeIn(500);
+        }
+
       }, 1500);
-
-
-      // 勝ち数が３になったらゲームクリアを表示
-      if('#wincount'===3){
-        $('#game_clear').show(500);
-      }
-
+      
+      
     });
 
+  $('#reset_btn').on('click', function() {
+    console.log('reset clicked'); // まず発火確認
 
+
+    // スコアをリセット
+    $('#wincount').text('0');
+    $('#losecount').text('0');
+
+    // ボールを元に戻す
+    $('#ball_1').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+    $('#ball_2').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+    $('#ball_3').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+    $('#ball_4').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+    $('#ball_5').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+    $('#ball_6').html('<img src="./images/ball.png" width="30px" height="30px" alt="" >');
+
+    // プレイヤーの手を消す
+    $('#guchopa').html('');
+
+    // コンピュータの手を元に戻す
+    $('#comp_what').html('Lv.100');
+
+    // テキストを戻す
+    $('#yasei_p').text("野生のじゃんけんが現れた！！");
+    $('.select').hide();
+
+    // クリア・ゲームオーバーを消す
+    $('#game_clear').hide();
+    $('#game_false').hide();
+  });
 
   </script>
 
