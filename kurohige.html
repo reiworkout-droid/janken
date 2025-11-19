@@ -17,7 +17,7 @@
         <!-- ハンバーガーメニューの中身 -->
         <nav class="nav">
             <ul class="nav_menu_ul">
-                <li class="nav_menu_li"><a href="./site.html">LP</a></li>
+                <li class="nav_menu_li"><a href="./index.html">LP</a></li>
                 <li class="nav_menu_li"><a href="./janken.html">じゃんけん</a></li>
                 <li class="nav_menu_li"><a href="./kurohige.html">黒ひげ危機一発</a></li>
             </ul>
@@ -26,7 +26,7 @@
 
     <main>
         <section>
-            <h1 id="title">マーシャル”D”ティチ一発</h1>
+             <h1 id="title">マーシャル”D”ティチ一発</h1>
         </section>
 
         <div class="game">
@@ -79,6 +79,15 @@
             console.log("外れボタン:", losingButton);//デバック確認用
 
 
+            function speakText(text) {
+            const uttr = new SpeechSynthesisUtterance(text);
+            uttr.lang = "ja-JP";
+            uttr.rate = 0.9;   
+            uttr.pitch = 0.6;
+            uttr.volume = 1;
+            speechSynthesis.speak(uttr);
+        }
+
             // ボタンクリック時
             $('.pirate_btn').on('click',function(){
                 const clickedId = $(this).attr('id');
@@ -86,15 +95,27 @@
 
                 // 分岐処理
                 if(clickedNum === losingButton){
-                    $('#result').text('ゲームオーバー💥');
+                    // 音声部分
+                    speakText("ゼハハハハ"); 
+
+                    $('#result').text('ゼハハハハ🤣');
                     $('#kurohige_img').animate({
                         top: "-100px"//上に飛び出す　下向きに数値が大きくなるためマイナス値
                     }, 800);
                     $('.pirate_btn').prop('disabled', true);//全ボタン無効化
                 } else {
-                    $('#result').text('セーフ・・・');
-                    $(this).prop('disabled', true)//押したボタンだけ無効化
-                }
+                          // ランダムで3パターン表示
+                    const messages = [
+                        '人の夢は!!!終わらねえ!!!!',
+                        'オレの航海は続くぜ！',
+                        'ここから先はぁ…俺の時代だァ!!!!'
+                    ];
+                    const randomIndex = Math.floor(Math.random() * 3);
+                    const message = messages[randomIndex];
+                    $('#result').text(message);
+                    speakText(message);
+                    $(this).prop('disabled', true);
+                    }
             });
 
              // リセットボタン
